@@ -41,7 +41,7 @@ class Example extends Component {
    yarn start
    ```
    
-1. Visit `http://localhost:6006` to view the example.
+1. Visit `http://localhost:6006` to view the widget.
 
 ## License
 
