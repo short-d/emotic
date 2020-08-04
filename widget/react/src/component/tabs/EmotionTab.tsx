@@ -3,43 +3,38 @@ import classNames from 'classnames';
 import { Button } from '../Button';
 import { Promotion } from '../Promotion';
 import { Emotion, EmotionType } from '../../entity/emotion';
-import frustrated from './emotion/frustrated.svg';
-import sad from './emotion/sad.svg';
-import neutral from './emotion/neutral.svg';
-import happy from './emotion/happy.svg';
-import love from './emotion/love.svg';
 
 import './EmotionTab.scss';
+import { Love } from './emotion/Love';
+import { Happy } from './emotion/Happy';
+import { Neutral } from './emotion/Neutral';
+import { Sad } from './emotion/Sad';
+import { Frustrated } from './emotion/Frustrated';
 
 const emotions: Emotion[] = [
   {
     name: 'Terrible',
     type: EmotionType.Terrible,
-    iconUrl: frustrated,
     feedbackPlaceholder: 'Please tell us what are you super frustrated about?'
   },
   {
     name: 'Hate',
     type: EmotionType.Hate,
-    iconUrl: sad,
     feedbackPlaceholder: 'Please tell us how can we improve?'
   },
   {
     name: 'Okay',
     type: EmotionType.Okay,
-    iconUrl: neutral,
     feedbackPlaceholder: 'Are there anythings you want to see in the future?'
   },
   {
     name: 'Good',
     type: EmotionType.Good,
-    iconUrl: happy,
     feedbackPlaceholder: 'Could you please tell us what you like about?'
   },
   {
     name: 'Love',
     type: EmotionType.Love,
-    iconUrl: love,
     feedbackPlaceholder: 'Amazing! We are excited to hear what you love!'
   }
 ];
@@ -98,20 +93,37 @@ export class EmotionTab extends Component<IProps, IState> {
   }
 
   renderEmotions(selectedEmotionIndex: number) {
-    return emotions.map((emotion, index) => (
-      <li key={index}>
-        <div
-          className={classNames({
-            icon: true,
-            active: index == selectedEmotionIndex
-          })}
-          onClick={this.handleEmotionClick(index)}
-        >
-          <img alt={emotion.name} src={emotion.iconUrl} />
-        </div>
-        <div className={'label'}>{emotion.name}</div>
-      </li>
-    ));
+    return emotions.map((emotion, index) => {
+      const isActive = index === selectedEmotionIndex;
+      return (
+        <li key={index}>
+          <div
+            className={classNames({
+              icon: true
+            })}
+            onClick={this.handleEmotionClick(index)}
+          >
+            {this.renderEmotion(emotion.type, isActive)}
+          </div>
+          <div className={'label'}>{emotion.name}</div>
+        </li>
+      );
+    });
+  }
+
+  renderEmotion(emotionType: EmotionType, isActive: boolean) {
+    switch (emotionType) {
+      case EmotionType.Love:
+        return <Love isActive={isActive} />;
+      case EmotionType.Good:
+        return <Happy isActive={isActive} />;
+      case EmotionType.Okay:
+        return <Neutral isActive={isActive} />;
+      case EmotionType.Hate:
+        return <Sad isActive={isActive} />;
+      case EmotionType.Terrible:
+        return <Frustrated isActive={isActive} />;
+    }
   }
 
   reset = () => {

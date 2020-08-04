@@ -36,21 +36,6 @@
     padding: 0;
 
     > li {
-      .icon {
-        img {
-          width: 50px;
-          filter: grayscale(100%);
-        }
-
-        &.active, &:hover {
-          img {
-            filter: none;
-            cursor: pointer;
-            transform: scale(1.3);
-            transition: all 200ms ease-in-out;
-          }
-        }
-      }
 
       .label {
         font-size: 18px;

@@ -9,6 +9,5 @@ export enum EmotionType {
 export interface Emotion {
   name: string;
   type: EmotionType;
-  iconUrl: string;
   feedbackPlaceholder: string;
 }
