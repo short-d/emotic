@@ -1,0 +1,1 @@
+export {Emotic} from './component/Emotic';
