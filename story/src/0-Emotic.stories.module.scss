@@ -1,0 +1,23 @@
+.App {
+  background-color: #424242;
+  font-family: "Helvetica Neue", sans-serif;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+
+  .message {
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    margin: auto;
+    padding: 100px 0;
+    text-align: center;
+    width: 700px;
+
+    a {
+      color: inherit;
+      font-size: 40px;
+      text-transform: uppercase;
+    }
+  }
+}
