@@ -1,6 +1,6 @@
-# Emotic
+# Emotic React
 
-> Feedback widget
+> Collect user feedback in your React app
 
 [![NPM](https://img.shields.io/npm/v/emotic.svg)](https://www.npmjs.com/package/emotic) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
