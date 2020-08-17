@@ -6,12 +6,8 @@ steps:
   - name: test
     image: docker
     commands:
-      - docker ps
-#      - cd backend && docker build -t short-d/emotic .
-#      - docker run short-d/emotic
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
+      - cd backend && docker build -t short-d/emotic .
+      - docker run short-d/emotic
     when:
       branch:
         - testing
