@@ -7,7 +7,6 @@ steps:
     image: docker
     commands:
       - docker build -t short-d/emotic -f backend/Dockerfile backend
-      - docker run short-d/emotic
     volumes:
       - name: docker
         path: /var/run/docker.sock
