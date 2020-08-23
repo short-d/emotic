@@ -8,6 +8,9 @@ steps:
     commands:
       - cd backend && docker build -t short-d/emotic .
       - docker run short-d/emotic
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
     when:
       branch:
         - testing
