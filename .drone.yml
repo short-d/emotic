@@ -48,8 +48,8 @@ steps:
         from_secret: DOCKERHUB_ORG_ID
     commands:
       - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-      - docker tag emotic-backend:latest $DOCKERHUB_ORG_ID/emotic-backend-staging:latest
-      - docker push $DOCKERHUB_ORG_ID/emotic-backend-staging:latest
+      - docker tag emotic-backend:latest $DOCKERHUB_ORG_ID/emotic-backend:latest
+      - docker push $DOCKERHUB_ORG_ID/emotic-backend:latest
     volumes:
       - name: docker
         path: /var/run/docker.sock
