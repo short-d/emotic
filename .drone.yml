@@ -6,7 +6,7 @@ steps:
   - name: test
     image: docker
     commands:
-      - cd backend && docker build -t short-d/emotic .
+      - docker build -t short-d/emotic -f backend/Dockerfile backend
       - docker run short-d/emotic
     volumes:
       - name: docker
