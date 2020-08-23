@@ -15,7 +15,7 @@ steps:
         - testing
       ref:
         - refs/tags/test-v*
-  volumes:
-    - name: docker
-      host:
-        path: /var/run/docker.sock
+volumes:
+  - name: docker
+    host:
+      path: /var/run/docker.sock
