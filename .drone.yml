@@ -6,7 +6,7 @@ steps:
   - name: test
     image: docker
     commands:
-      - docker build -t short-d/emotic -f backend/Dockerfile backend
+      - docker build -t emotic-backend -f backend/Dockerfile backend
     volumes:
       - name: docker
         path: /var/run/docker.sock
@@ -15,6 +15,27 @@ steps:
         - testing
       ref:
         - refs/tags/test-v*
+  - name: publish staging images to DockerHub
+    image: docker
+    environment:
+      DOCKERHUB_USERNAME:
+        from_secret: DOCKERHUB_USERNAME
+      DOCKERHUB_PASSWORD:
+        from_secret: DOCKERHUB_PASSWORD
+      DOCKERHUB_ORG_ID:
+        from_secret: DOCKERHUB_ORG_ID
+    commands:
+      - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+      - docker tag emotic-backend:latest $DOCKERHUB_ORG_ID/emotic-backend-staging:latest
+      - docker push $DOCKERHUB_ORG_ID/emotic-backend-staging:latest
+      volumes:
+        - name: docker
+          path: /var/run/docker.sock
+      when:
+        branch:
+          - testing
+        ref:
+          - refs/tags/test-v*
 volumes:
   - name: docker
     host:
