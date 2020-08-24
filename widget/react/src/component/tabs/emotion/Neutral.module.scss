@@ -1,11 +1,85 @@
-.Face {
-  filter: grayscale(100%);
-  width: 50px;
+$face-color-grey: #ebebeb;
+$face-color-yellow: #ffef85;
+$eye-color-grey: #919191;
+$eye-color-black: #636363;
 
-  &.active, &:hover {
+.face {
+  &__background {
+    fill: $face-color-grey;
+    transition: 1s;
+  }
+  &__eyesAndMouth {
+    fill: $eye-color-grey;
+    transition: 0.7s;
+    animation: eyesAndMouthExit 0.7s ease;
+  }
+  &:hover {
     cursor: pointer;
-    filter: none;
-    transform: scale(1.3);
-    transition: all 200ms ease-in-out;
+  }
+  &:hover & {
+    &__background {
+      fill: $face-color-yellow;
+      transition: 0.3s;
+    }
+    &__eyesAndMouth {
+      fill: $eye-color-black;
+      animation:
+        eyesAndMouthEnter 1s 0.2s ease,
+        eyesAndMouthLoop 5s 1.2s ease infinite;
+    }
+  }
+  &_active & {
+    &__background {
+      fill: $face-color-yellow;
+    }
+    &__eyesAndMouth {
+      fill: $eye-color-black;
+    }
+  }
+}
+
+@keyframes eyesAndMouthEnter {
+  50% {
+    transform: translate(-7px, 0px);
+  }
+  100% {
+    transform: translate(-7px, 0px);
+  }
+}
+@keyframes eyesAndMouthLoop {
+  0% {
+    transform: translate(-7px, 0px);
+  }
+  15% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(0px, 0px);
+  }
+  35% {
+    transform: translate(7px, 0px);
+  }
+  55% {
+    transform: translate(7px, 0px);
+  }
+  65% {
+    transform: translate(0px, 0px);
+  }
+  75% {
+    transform: translate(0px, 0px);
+  }
+  85% {
+    transform: translate(-7px, 0px);
+  }
+  100% {
+    transform: translate(-7px, 0px);
+  }
+}
+@keyframes eyesAndMouthExit {
+  from {
+    transform: var(--transformExitValue);
+  }
+  to {
+    transform: translate(0px, 0px);
   }
 }
